@@ -67,14 +67,24 @@ button:focus-visible {
   }
 } */
 
-.headerdiv{
-  width:30%;
-  height:20%;
-  background-color: aqua;
-  margin-left: 40%;
-  padding: 5px;;
+.header{
+  display: flex;
+  justify-content: space-between;
   border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
-  justify-content: center;
+}
+
+.nav-list{
+margin: 20px;
+}
+
+.nav-list > ul{
+list-style-type: none;
+display: flex;
+}
+
+.nav-list > ul > li{
+  padding: 10px;
+}
+.logo{
+  width: 100px;
 }

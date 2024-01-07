@@ -33,14 +33,12 @@
 // }
 
 // export default App
-
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <>
-      <div className="headerdiv">
-        <h1>React + Vite = Beast </h1>
-      </div>
+     <Header/>
 
     </>
   );
