@@ -88,3 +88,16 @@ display: flex;
 .logo{
   width: 100px;
 }
+.card{
+  width: 200px;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px;
+}
+.card > img{
+  width:100%;
+}
+.body{
+  display: flex;
+  flex-wrap: wrap;
+}

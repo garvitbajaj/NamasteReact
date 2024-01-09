@@ -24,15 +24,6 @@ const Header = () => {
           <li>Cart</li>
         </ul>
       </div>
-      {/* <input
-      type="text"
-      placeholder="Search"
-      value={inputValue}
-      onChange={(e)=>{
-      setInputValue(e.target.value);
-      }}
-      /> */}
-
     </div>
   );
 }
