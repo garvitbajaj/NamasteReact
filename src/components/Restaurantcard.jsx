@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactDOM } from "react";
+import { IMG_CDN_URL } from "./Contant";
 
 const RestaurantCard = ({name,cloudinaryImageId,lastMileTravel,cuisines}) => {
     
@@ -10,7 +10,7 @@ const RestaurantCard = ({name,cloudinaryImageId,lastMileTravel,cuisines}) => {
     return (
         <div className="card">
                 <img
-                    src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+
+                    src={IMG_CDN_URL+
                     cloudinaryImageId
                 }
                     

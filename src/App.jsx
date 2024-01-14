@@ -41,8 +41,7 @@ const App = () => {
     <>
      <Header/>
      <Body/>
-     <Footer/>
-
+     <Footer/> 
     </>
   );
 }
