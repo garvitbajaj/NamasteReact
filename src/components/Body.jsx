@@ -1,50 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RestaurantCard from "./Restaurantcard";
-import { restaurantList } from "./Contant";
+import Shimmer from "./Shimmer";
+
+function filterData(searchInput, allRestaurant) {
+  return allRestaurant.filter((restaurant) => {
+    return restaurant?.info?.name?.toLowerCase()?.includes(searchInput);
+  });
+}
 
 const Body = () => {
-    const [searchInput , setSearchInput] = useState("");
-    const [restaurants , setRestaurants] = useState("restaurantList");
+  const [searchInput, setSearchInput] = useState("");
+  const [allRestaurant, setallRestaurant] = useState([]);
+  const [filteredRestaurant , setFilteredRestaurant] = useState([]);
 
+  useEffect(() => {
+    getRestaurant();
+  }, []);
 
-    function filterData(searchInput,restaurants){
-      const filterData =  restaurants.filter((restaurant)=>{
-        restaurant.data.name.includes(searchInput);
-       })
-       return filterData;
-        }
+  console.log("see all restaurant", allRestaurant);
 
-    return (
-        <>
-        <div className="">
-         <input 
-          type="text"
-          className="search-input"
-          placeholder="Search"
-          value={searchInput}
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-          }}
-         />
-         <button 
-          className="search-btn"
-          onClick={() => {
-            //need to filter data
-            const data = filterData(searchInput,restaurants);
-            //update the state - restaurant
-            setRestaurants(data);
-          }}
-         >Search</button>
+  async function getRestaurant() {
+    const res = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
+    const json = await res.json("");
+    setallRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  }
+
+  console.log('render');
+
+  //early return 
+if(!allRestaurant) return null;
+  
+
+if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
+
+  // conditonal rendering 
+  // if my restaurant has empty ==> show shimmer UI
+  // if my restaurant has data ==> show actual UI 
+
+  // restaurants.length === 0 ? <Shimmer UI/> : Actual UI whole return statement 
+  return allRestaurant?.length === 0 ?
+    (<Shimmer />)
+    : (
+      <>
+        <div >
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search"
+            value={searchInput}
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              //need to filter data
+              const data = filterData(searchInput, allRestaurant);
+              //update the state - restaurant
+              setFilteredRestaurant(data);
+            }}
+          >Search</button>
         </div>
-         <div className="body">
-            {
-                restaurants.map((restaurant)=>{
-                return <RestaurantCard {... restaurant.data } key={restaurant.data.id}/>
-                })
-            }
+        <div className="body">
+          {
+            filteredRestaurant.map((restaurant) => {
+              return (
+                <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+              );
+            })
+          }
         </div>
 
-        </>
+      </>
     );
 }
 

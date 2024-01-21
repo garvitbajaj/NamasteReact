@@ -101,3 +101,12 @@ display: flex;
   display: flex;
   flex-wrap: wrap;
 }
+.shimmer{
+  width: 200px;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px;
+}
+.shimmer > img{
+  width:100%;
+}

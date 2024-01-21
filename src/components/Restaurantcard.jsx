@@ -12,13 +12,13 @@ const RestaurantCard = ({name,cloudinaryImageId,lastMileTravel,cuisines}) => {
                 <img
                     src={IMG_CDN_URL+
                     cloudinaryImageId
-                }
-                    
+                }     
                 />
                 <h1>{ name}</h1>
-                <h2>{ cuisines.join(",")}</h2>
+                <h2>{ cuisines.splice(0,1).join(",")}</h2>
                 <h3>{ lastMileTravel} </h3>
             </div>
+            
         
     );
 }
