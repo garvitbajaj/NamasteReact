@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 
-function filterData(searchInput, allRestaurant) {
-  return allRestaurant.filter((restaurant) => {
-    return restaurant?.info?.name?.toLowerCase()?.includes(searchInput);
-  });
-}
+
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [allRestaurant, setallRestaurant] = useState([]);
   const [filteredRestaurant , setFilteredRestaurant] = useState([]);
+
+
+  function filterData(searchInput, allRestaurant) {
+    return allRestaurant.filter((restaurant) => {
+      return restaurant?.info?.name?.toLowerCase()?.includes(searchInput);
+    });
+  }
 
   useEffect(() => {
     getRestaurant();
@@ -29,10 +32,10 @@ const Body = () => {
   console.log('render');
 
   //early return 
-if(!allRestaurant) return null;
+// if(!allRestaurant) return null;
   
 
-if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
+// if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
 
   // conditonal rendering 
   // if my restaurant has empty ==> show shimmer UI
@@ -43,7 +46,7 @@ if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
     (<Shimmer />)
     : (
       <>
-        <div >
+        <div className="search">
           <input
             type="text"
             className="search-input"
@@ -67,7 +70,7 @@ if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
           {
             filteredRestaurant.map((restaurant) => {
               return (
-                <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+                <RestaurantCard {...restaurant?.info} key={restaurant?.info.id} />
               );
             })
           }

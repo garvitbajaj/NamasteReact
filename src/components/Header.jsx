@@ -1,29 +1,50 @@
 import React, { useState } from "react";
-import { ReactDOM } from "react";
-
-
-
+import { Link } from "react-router-dom";
 const Title = () => {
-  return(
+  return (
     <img className="logo"
-        src="./src/assets/RS logo.png" alt="RS logo"
-      /> 
+      src="./src/assets/RS logo.png" alt="RS logo"
+    />
   );
 }
+// SPA- Single Page Application 
+// Client Server Routing 
 
 const Header = () => {
-  // const[inputValue , setInputValue] = useState("");
+  const [isLoggedin, setIsLoggedin] = useState(false);
   return (
     <div className="header">
-      <Title/>
+      <Title />
       <div className="nav-list">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Details</li>
+          <li><Link to="/">Home</Link></li>
+          <li> <Link to="/about">About Us</Link></li>
+          <li> <Link to="">Contact Us</Link></li>
           <li>Cart</li>
         </ul>
       </div>
+      {
+        isLoggedin ? (
+          <button onClick={() => setIsLoggedin(false)}>Logout</button>
+        ): (
+            <button onClick={() => setIsLoggedin(true)}>Login</button>
+          )
+      }
+
+      {/* {
+        isLoggedin ? 
+        <button onClick={()=>{
+          setIsLoggedin(false);
+        }}
+        >
+          Logout
+          </button> 
+        : <button onClick={() => {
+          setIsLoggedin(true);
+        }}>
+          Login
+          </button>
+      }  */}
     </div>
   );
 }

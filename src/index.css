@@ -88,6 +88,13 @@ display: flex;
 .logo{
   width: 100px;
 }
+.search{
+  margin: 15px;
+  padding: 10px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 .card{
   width: 200px;
   border: 1px solid black;
@@ -101,12 +108,18 @@ display: flex;
   display: flex;
   flex-wrap: wrap;
 }
-.shimmer{
+.shimmerList{
   width: 200px;
+  height:200px;
   border: 1px solid black;
+  background-color: grey;
   margin: 20px;
   padding: 10px;
 }
-.shimmer > img{
+.shimmerList > img{
   width:100%;
+}
+.shimmer{
+  display: flex;
+  flex-wrap: wrap;
 }
