@@ -19,20 +19,21 @@ const Body = () => {
   useEffect(() => {
     getRestaurant();
   }, []);
-
-  console.log("see all restaurant", allRestaurant);
+   console.log("see all restaurant", allRestaurant);
+  
 
   async function getRestaurant() {
     const res = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
     const json = await res.json("");
+    console.log("abcd");
     setallRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   console.log('render');
-
+  console.log("filterrestaurant",filteredRestaurant);
   //early return 
- if(!allRestaurant) return null;
+// if(!allRestaurant) return null;
   
 
 // if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
@@ -40,11 +41,15 @@ const Body = () => {
   // conditonal rendering 
   // if my restaurant has empty ==> show shimmer UI
   // if my restaurant has data ==> show actual UI 
-
+  if( allRestaurant?.length === 0){
+    return <Shimmer/>
+  }
+ 
   // restaurants.length === 0 ? <Shimmer UI/> : Actual UI whole return statement 
-  return allRestaurant?.length === 0 ?
-    (<Shimmer />)
-    : (
+  // return allRestaurant?.length === 0 ?
+  //   (<Shimmer />)
+  //   :
+  return(
       <>
         <div className="search">
           <input
