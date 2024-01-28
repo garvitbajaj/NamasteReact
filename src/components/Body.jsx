@@ -32,7 +32,7 @@ const Body = () => {
   console.log('render');
 
   //early return 
-// if(!allRestaurant) return null;
+ if(!allRestaurant) return null;
   
 
 // if(filteredRestaurant?.length === 0) return <h1>No Matach Found</h1>
